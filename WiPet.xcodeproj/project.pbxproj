@@ -1,0 +1,690 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A2B3C4D5E6F700000000101 /* WiPetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F700000000201 /* WiPetApp.swift */; };
+		1A2B3C4D5E6F700000000102 /* ObservationHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F700000000202 /* ObservationHomeView.swift */; };
+		1A2B3C4D5E6F700000000103 /* PreviewFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F700000000203 /* PreviewFixtures.swift */; };
+		1A2B3C4D5E6F700000000104 /* WiPetCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A2B3C4D5E6F700000000501 /* WiPetCore */; };
+		1A2B3C4D5E6F700000000105 /* CreatureScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F700000000205 /* CreatureScene.swift */; };
+		1A2B3C4D5E6F700000000106 /* CreatureNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F700000000206 /* CreatureNode.swift */; };
+		1A2B3C4D5E6F700000000107 /* CreatureRenderProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F700000000207 /* CreatureRenderProfile.swift */; };
+		1A2B3C4D5E6F700000000108 /* PartAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F700000000208 /* PartAssembler.swift */; };
+		1A2B3C4D5E6F700000000109 /* WiPetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F700000000209 /* WiPetWidget.swift */; };
+		1A2B3C4D5E6F70000000010A /* WiPetCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A2B3C4D5E6F700000000501 /* WiPetCore */; };
+		1A2B3C4D5E6F70000000010B /* WiPetWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F70000000020A /* WiPetWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1A2B3C4D5E6F70000000010C /* WidgetCurrentObservationHandoffCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F70000000020C /* WidgetCurrentObservationHandoffCoordinator.swift */; };
+		1A2B3C4D5E6F70000000010D /* WiPetWidgetObservationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F70000000020D /* WiPetWidgetObservationContentView.swift */; };
+		1A2B3C4D5E6F70000000010E /* WiPetWidgetObservationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F70000000020D /* WiPetWidgetObservationContentView.swift */; };
+		1A2B3C4D5E6F70000000010F /* WidgetPreviewQAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F70000000020E /* WidgetPreviewQAView.swift */; };
+		1A2B3C4D5E6F700000000111 /* SnapshotHostGenomeVariationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B3C4D5E6F70000000020F /* SnapshotHostGenomeVariationTests.swift */; };
+		1A2B3C4D5E6F700000000112 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 1A2B3C4D5E6F700000000503 /* SnapshotTesting */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1A2B3C4D5E6F700000000603 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A2B3C4D5E6F700000000701 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A2B3C4D5E6F700000000602;
+			remoteInfo = WiPetWidget;
+		};
+		1A2B3C4D5E6F700000000606 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A2B3C4D5E6F700000000701 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A2B3C4D5E6F700000000601;
+			remoteInfo = WiPet;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1A2B3C4D5E6F700000000304 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1A2B3C4D5E6F70000000010B /* WiPetWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1A2B3C4D5E6F700000000201 /* WiPetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiPetApp.swift; sourceTree = "<group>"; };
+		1A2B3C4D5E6F700000000202 /* ObservationHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationHomeView.swift; sourceTree = "<group>"; };
+		1A2B3C4D5E6F700000000203 /* PreviewFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFixtures.swift; sourceTree = "<group>"; };
+		1A2B3C4D5E6F700000000204 /* WiPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WiPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A2B3C4D5E6F700000000205 /* CreatureScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureScene.swift; sourceTree = "<group>"; };
+		1A2B3C4D5E6F700000000206 /* CreatureNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureNode.swift; sourceTree = "<group>"; };
+		1A2B3C4D5E6F700000000207 /* CreatureRenderProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatureRenderProfile.swift; sourceTree = "<group>"; };
+		1A2B3C4D5E6F700000000208 /* PartAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartAssembler.swift; sourceTree = "<group>"; };
+		1A2B3C4D5E6F700000000209 /* WiPetWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiPetWidget.swift; sourceTree = "<group>"; };
+		1A2B3C4D5E6F70000000020A /* WiPetWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WiPetWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A2B3C4D5E6F70000000020B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A2B3C4D5E6F70000000020C /* WidgetCurrentObservationHandoffCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCurrentObservationHandoffCoordinator.swift; sourceTree = "<group>"; };
+		1A2B3C4D5E6F70000000020D /* WiPetWidgetObservationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiPetWidgetObservationContentView.swift; sourceTree = "<group>"; };
+		1A2B3C4D5E6F70000000020E /* WidgetPreviewQAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewQAView.swift; sourceTree = "<group>"; };
+		1A2B3C4D5E6F70000000020F /* SnapshotHostGenomeVariationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHostGenomeVariationTests.swift; sourceTree = "<group>"; };
+		1A2B3C4D5E6F700000000210 /* WiPetSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WiPetSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A2B3C4D5E6F700000000301 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2B3C4D5E6F700000000104 /* WiPetCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A2B3C4D5E6F700000000306 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2B3C4D5E6F70000000010A /* WiPetCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A2B3C4D5E6F700000000308 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2B3C4D5E6F700000000112 /* SnapshotTesting in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A2B3C4D5E6F700000000401 = {
+			isa = PBXGroup;
+			children = (
+				1A2B3C4D5E6F700000000402 /* WiPetApp */,
+				1A2B3C4D5E6F700000000404 /* WiPetWidget */,
+				1A2B3C4D5E6F700000000405 /* WiPetSnapshotTests */,
+				1A2B3C4D5E6F700000000403 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1A2B3C4D5E6F700000000402 /* WiPetApp */ = {
+			isa = PBXGroup;
+			children = (
+				1A2B3C4D5E6F700000000201 /* WiPetApp.swift */,
+				1A2B3C4D5E6F700000000202 /* ObservationHomeView.swift */,
+				1A2B3C4D5E6F700000000205 /* CreatureScene.swift */,
+				1A2B3C4D5E6F700000000206 /* CreatureNode.swift */,
+				1A2B3C4D5E6F700000000207 /* CreatureRenderProfile.swift */,
+				1A2B3C4D5E6F700000000208 /* PartAssembler.swift */,
+				1A2B3C4D5E6F70000000020C /* WidgetCurrentObservationHandoffCoordinator.swift */,
+				1A2B3C4D5E6F70000000020E /* WidgetPreviewQAView.swift */,
+				1A2B3C4D5E6F700000000203 /* PreviewFixtures.swift */,
+			);
+			path = WiPetApp;
+			sourceTree = "<group>";
+		};
+		1A2B3C4D5E6F700000000403 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A2B3C4D5E6F700000000204 /* WiPet.app */,
+				1A2B3C4D5E6F70000000020A /* WiPetWidget.appex */,
+				1A2B3C4D5E6F700000000210 /* WiPetSnapshotTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A2B3C4D5E6F700000000404 /* WiPetWidget */ = {
+			isa = PBXGroup;
+			children = (
+				1A2B3C4D5E6F700000000209 /* WiPetWidget.swift */,
+				1A2B3C4D5E6F70000000020D /* WiPetWidgetObservationContentView.swift */,
+				1A2B3C4D5E6F70000000020B /* Info.plist */,
+			);
+			path = WiPetWidget;
+			sourceTree = "<group>";
+		};
+		1A2B3C4D5E6F700000000405 /* WiPetSnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				1A2B3C4D5E6F70000000020F /* SnapshotHostGenomeVariationTests.swift */,
+			);
+			path = WiPetSnapshotTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A2B3C4D5E6F700000000601 /* WiPet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A2B3C4D5E6F700000000702 /* Build configuration list for PBXNativeTarget "WiPet" */;
+			buildPhases = (
+				1A2B3C4D5E6F700000000302 /* Sources */,
+				1A2B3C4D5E6F700000000301 /* Frameworks */,
+				1A2B3C4D5E6F700000000303 /* Resources */,
+				1A2B3C4D5E6F700000000304 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A2B3C4D5E6F700000000604 /* PBXTargetDependency */,
+			);
+			name = WiPet;
+			packageProductDependencies = (
+				1A2B3C4D5E6F700000000501 /* WiPetCore */,
+			);
+			productName = WiPet;
+			productReference = 1A2B3C4D5E6F700000000204 /* WiPet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1A2B3C4D5E6F700000000602 /* WiPetWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A2B3C4D5E6F700000000703 /* Build configuration list for PBXNativeTarget "WiPetWidget" */;
+			buildPhases = (
+				1A2B3C4D5E6F700000000305 /* Sources */,
+				1A2B3C4D5E6F700000000306 /* Frameworks */,
+				1A2B3C4D5E6F700000000307 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WiPetWidget;
+			packageProductDependencies = (
+				1A2B3C4D5E6F700000000501 /* WiPetCore */,
+			);
+			productName = WiPetWidget;
+			productReference = 1A2B3C4D5E6F70000000020A /* WiPetWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		1A2B3C4D5E6F700000000605 /* WiPetSnapshotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A2B3C4D5E6F700000000705 /* Build configuration list for PBXNativeTarget "WiPetSnapshotTests" */;
+			buildPhases = (
+				1A2B3C4D5E6F70000000030A /* Sources */,
+				1A2B3C4D5E6F700000000308 /* Frameworks */,
+				1A2B3C4D5E6F700000000309 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A2B3C4D5E6F700000000607 /* PBXTargetDependency */,
+			);
+			name = WiPetSnapshotTests;
+			packageProductDependencies = (
+				1A2B3C4D5E6F700000000503 /* SnapshotTesting */,
+			);
+			productName = WiPetSnapshotTests;
+			productReference = 1A2B3C4D5E6F700000000210 /* WiPetSnapshotTests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A2B3C4D5E6F700000000701 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					1A2B3C4D5E6F700000000601 = {
+						CreatedOnToolsVersion = 26.5;
+					};
+					1A2B3C4D5E6F700000000602 = {
+						CreatedOnToolsVersion = 26.5;
+					};
+					1A2B3C4D5E6F700000000605 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 1A2B3C4D5E6F700000000601;
+					};
+				};
+			};
+			buildConfigurationList = 1A2B3C4D5E6F700000000704 /* Build configuration list for PBXProject "WiPet" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1A2B3C4D5E6F700000000401;
+			packageReferences = (
+				1A2B3C4D5E6F700000000502 /* XCLocalSwiftPackageReference "." */,
+				1A2B3C4D5E6F70000000050A /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
+			productRefGroup = 1A2B3C4D5E6F700000000403 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A2B3C4D5E6F700000000601 /* WiPet */,
+				1A2B3C4D5E6F700000000602 /* WiPetWidget */,
+				1A2B3C4D5E6F700000000605 /* WiPetSnapshotTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A2B3C4D5E6F700000000303 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A2B3C4D5E6F700000000307 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A2B3C4D5E6F700000000309 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A2B3C4D5E6F700000000302 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2B3C4D5E6F700000000101 /* WiPetApp.swift in Sources */,
+				1A2B3C4D5E6F700000000102 /* ObservationHomeView.swift in Sources */,
+				1A2B3C4D5E6F700000000105 /* CreatureScene.swift in Sources */,
+				1A2B3C4D5E6F700000000106 /* CreatureNode.swift in Sources */,
+				1A2B3C4D5E6F700000000107 /* CreatureRenderProfile.swift in Sources */,
+				1A2B3C4D5E6F700000000108 /* PartAssembler.swift in Sources */,
+				1A2B3C4D5E6F70000000010C /* WidgetCurrentObservationHandoffCoordinator.swift in Sources */,
+				1A2B3C4D5E6F70000000010D /* WiPetWidgetObservationContentView.swift in Sources */,
+				1A2B3C4D5E6F70000000010F /* WidgetPreviewQAView.swift in Sources */,
+				1A2B3C4D5E6F700000000103 /* PreviewFixtures.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A2B3C4D5E6F700000000305 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2B3C4D5E6F700000000109 /* WiPetWidget.swift in Sources */,
+				1A2B3C4D5E6F70000000010E /* WiPetWidgetObservationContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A2B3C4D5E6F70000000030A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A2B3C4D5E6F700000000111 /* SnapshotHostGenomeVariationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1A2B3C4D5E6F700000000604 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A2B3C4D5E6F700000000602 /* WiPetWidget */;
+			targetProxy = 1A2B3C4D5E6F700000000603 /* PBXContainerItemProxy */;
+		};
+		1A2B3C4D5E6F700000000607 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A2B3C4D5E6F700000000601 /* WiPet */;
+			targetProxy = 1A2B3C4D5E6F700000000606 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1A2B3C4D5E6F700000000801 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1A2B3C4D5E6F700000000802 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1A2B3C4D5E6F700000000803 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WiPet;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.taikikira.WiPet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1A2B3C4D5E6F700000000804 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WiPet;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.taikikira.WiPet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1A2B3C4D5E6F700000000805 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WiPetWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.taikikira.WiPet.WiPetWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1A2B3C4D5E6F700000000806 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WiPetWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.taikikira.WiPet.WiPetWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1A2B3C4D5E6F700000000807 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.taikikira.WiPet.WiPetSnapshotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WiPet;
+			};
+			name = Debug;
+		};
+		1A2B3C4D5E6F700000000808 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.taikikira.WiPet.WiPetSnapshotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WiPet;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A2B3C4D5E6F700000000702 /* Build configuration list for PBXNativeTarget "WiPet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A2B3C4D5E6F700000000803 /* Debug */,
+				1A2B3C4D5E6F700000000804 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A2B3C4D5E6F700000000704 /* Build configuration list for PBXProject "WiPet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A2B3C4D5E6F700000000801 /* Debug */,
+				1A2B3C4D5E6F700000000802 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A2B3C4D5E6F700000000703 /* Build configuration list for PBXNativeTarget "WiPetWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A2B3C4D5E6F700000000805 /* Debug */,
+				1A2B3C4D5E6F700000000806 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A2B3C4D5E6F700000000705 /* Build configuration list for PBXNativeTarget "WiPetSnapshotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A2B3C4D5E6F700000000807 /* Debug */,
+				1A2B3C4D5E6F700000000808 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		1A2B3C4D5E6F700000000502 /* XCLocalSwiftPackageReference "." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = .;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1A2B3C4D5E6F70000000050A /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.19.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1A2B3C4D5E6F700000000501 /* WiPetCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A2B3C4D5E6F700000000502 /* XCLocalSwiftPackageReference "." */;
+			productName = WiPetCore;
+		};
+		1A2B3C4D5E6F700000000503 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A2B3C4D5E6F70000000050A /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 1A2B3C4D5E6F700000000701 /* Project object */;
+}

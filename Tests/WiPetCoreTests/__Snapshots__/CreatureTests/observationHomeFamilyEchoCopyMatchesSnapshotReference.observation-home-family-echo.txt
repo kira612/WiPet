@@ -1,0 +1,27 @@
+ObservationHomeFamilyEcho
+Observation focus
+A quiet lunar glow deepened around the tail.
+Juvenile glow deepened
+Family echo
+Floating tail carries a quiet echo of first ancestor.
+The family tree is only remembering this for now.
+First ancestor is remembered in this branch.
+This echo now belongs to this family's quiet line.
+lineageObservationMemorySheet=entry:Family tree,trait:tail,ancestor:firstAncestor,householdLine:true,readOnly:true,graphNavigation:false,persistence:false,breeding:false,optimization:false,playerFacing:true
+lineageObservationMemorySheetReady:true
+First ancestor -> floating tail echo
+First ancestor is the first memory this line knows.
+lineageObservationFamilyTreeEntry=title:Family tree,ancestor:firstAncestor,branchLine:true,generationLine:true,readOnly:true,graphNavigation:false,persistence:false,breeding:false,optimization:false,playerFacing:true
+lineageObservationFamilyTreeEntryReady:true
+Ancestor memory
+Ori portrait
+Mira keeps fairy winglets close.
+Ori's soft deer-face echo is remembered here.
+This card only remembers the family echo.
+lineageAncestorPortraitMemoryCard=ancestor:Ori,portrait:Ori portrait,changed:face,inheritedCue:fairy winglets,changedCue:soft deer-face echo,readOnly:true,seed:false,persistence:false,breeding:false,optimization:false,widget:false,playerFacing:false
+lineageAncestorPortraitMemoryCardReady:true
+lineageObservationBranchCaptionBridge=observationAncestor:firstAncestor,branchAncestor:Ori,observationReadOnly:true,branchReadOnly:true,sharedFamilyLine:true,hiddenRandomDetails:false
+lineageObservationBranchCaptionBridgeReady:true
+lineageObservationMemoryTeaser=entry:Family tree,trait:tail,cue:floatingRibbon,entryLine:true,navigation:false,persistence:false,breeding:false,optimization:false,playerFacing:true
+lineageObservationMemoryTeaserReady:true
+snapshotReferenceAssertion=surface:observationHome,kind:textLines,reference:observation-home-family-echo,available:true,manualQA:true,referenceRecorded:true,assertion:true,imageReference:false,technicalMetadata:false,appBehaviorChanged:false,ready:true

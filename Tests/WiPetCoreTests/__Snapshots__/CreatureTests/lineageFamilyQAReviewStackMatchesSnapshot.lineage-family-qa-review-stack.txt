@@ -1,0 +1,7 @@
+LineageFamilyQAReviewStack
+lineageDraftMemoryEvidenceReview=changed:body,title:Evidence review,traitReady:true,ancestorReady:true,contextReady:true,persistence:false,discoveryWrite:false,createsChild:false,playerFacing:false
+lineageDraftMemoryAcknowledgementReview=changed:body,title:Acknowledgement review,reviewReady:true,waitingReady:true,commit:false,persistence:false,discoveryWrite:false,createsChild:false,playerFacing:false
+lineageDraftMemoryExplicitIntentGate=changed:body,title:Intent gate,intent:false,commit:false,persistence:false,discoveryWrite:false,createsChild:false,playerFacing:false
+lineageDraftMemoryPersistence=changed:body,ceremony:false,evidence:false,swiftData:false,appGroup:false,createsChild:false,futureWrite:false,playerFacing:false
+lineageDraftMemoryPersistenceDryRun=changed:body,safe:true,futureReady:false,intent:false,swiftData:true,appGroup:true,dryRun:true,write:false,createsChild:false,playerFacing:false
+lineageDraftMemoryConfirmationCeremony=changed:body,title:Confirmation ceremony,acknowledgement:true,intent:true,dryRun:true,commit:false,persistence:false,discoveryWrite:false,createsChild:false,playerFacing:false

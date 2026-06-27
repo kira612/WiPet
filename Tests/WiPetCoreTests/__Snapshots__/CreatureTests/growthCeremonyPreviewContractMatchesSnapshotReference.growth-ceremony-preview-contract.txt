@@ -1,0 +1,31 @@
+GrowthCeremonyPreviewContract
+growthCeremonyReady:true,requirements:playerAcknowledgement+beforeAfterObservation+discoveryLogHandoff+widgetHandoff+persistenceBeforeMutation,growthTraitRevealReady:true,growthTraitReveal=trait:tailGlow,from:small lunar shimmer,to:deeper tail glow,growthConfirmationGateReady:true,growthConfirmationGate=ready:true,allowsMutation:false,required:playerAcknowledgement+beforeAfterObservation+discoveryLogHandoff+widgetHandoff+persistenceBeforeMutation,trait:tailGlow,growthBeforeAfterObservationReady:true,growthBeforeAfterObservation=current:Luma now carries a small lunar shimmer.,next:Adult Luma may show a deeper tail glow.,growthMutationProofReady:true,growthMutationProof=ready:true,satisfied:false,required:playerAcknowledgementRecorded+beforeAfterObservationReviewed+discoveryLogPrepared+widgetHandoffPrepared+persistenceWritePrepared,satisfiedEvidence:none,trait:tailGlow
+growthTraitReveal=trait:tailGlow,from:small lunar shimmer,to:deeper tail glow
+growthBeforeAfterObservation=current:Luma now carries a small lunar shimmer.,next:Adult Luma may show a deeper tail glow.
+growthLineageCueBridge=trait:tailGlow,cue:floatingRibbon,ancestor:firstAncestor,allowsMutation:false
+growthLineageCueBridgeReady:true
+growthLineageTeaser=trait:tailGlow,cue:floatingRibbon,ancestor:firstAncestor,playerFacing:false
+growthLineageTeaserReady:true
+growthDiscoveryLogHandoff=title:Luma grew into Adult.,stage:adult,kind:growth,lineage:true,allowsWrite:false
+growthDiscoveryLogHandoffReady:true
+growthNoticedMemoryLine=acknowledged:true,display:true,previewOnly:true,write:false,mutation:false,widget:false,discovery:false
+growthNoticedMemoryLineReady:true
+growthAcknowledgementGate=acknowledged:false,handoffReady:true,proofSatisfied:false,allowsCommit:false
+growthAcknowledgementGateReady:true
+growthAcknowledgementSurface=acknowledged:false,allowsCommit:false,promptReady:true
+growthAcknowledgementSurfaceReady:true
+growthConfirmationSurface=title:Ceremony preview,observationReady:true,acknowledgementReady:true,handoffWrite:false,allowsCommit:false
+growthConfirmationSurfaceReady:true
+growthAcknowledgementIntent=intent:I noticed this change,previewOnly:true,normalUI:false,mutation:false,persistence:false,widget:false
+growthAcknowledgementIntentReady:true
+growthObservationAcknowledgement=noted:false,previewOnly:true,normalUI:false,mutation:false,persistence:false,widget:false,discovery:false
+growthObservationAcknowledgementReady:true
+growthPersistenceBoundary=swiftData:true,appGroup:true,dryRun:true,write:false,mutatesCreature:false,discovery:false,widget:false,safe:true
+growthPersistenceBoundaryReady:true
+growthWidgetHandoffPreflight=schema:1,key:widget.currentObservation.json,widgetKind:WiPetWidget,payloadPrepared:true,previewOnly:true,write:false,reload:false,publish:false,persistenceBoundary:true,ready:true
+growthWidgetHandoffPreflightReady:true
+growthLineageAffectionCopy=title:Family echo,inherit:tail,variation:body,seedHidden:true,rawRandomness:false,mutation:false,persistence:false,widget:false,playerFacing:true
+growthLineageAffectionCopyReady:true
+creatureStageAfterPreview:juvenile
+discoveryCountAfterPreview:0
+snapshotReferenceAssertion=surface:observationHome,kind:textLines,reference:growth-ceremony-preview-contract,available:true,manualQA:true,referenceRecorded:true,assertion:true,imageReference:false,technicalMetadata:false,appBehaviorChanged:false,ready:true

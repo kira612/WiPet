@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ -n "${WIPET_BLENDER_BIN:-}" ]]; then
+  BLENDER_BIN="$WIPET_BLENDER_BIN"
+elif command -v blender >/dev/null 2>&1; then
+  BLENDER_BIN="$(command -v blender)"
+elif [[ -x "/Applications/Blender.app/Contents/MacOS/Blender" ]]; then
+  BLENDER_BIN="/Applications/Blender.app/Contents/MacOS/Blender"
+else
+  echo "WiPet Blender helper could not find Blender." >&2
+  echo "Set WIPET_BLENDER_BIN to the Blender executable path." >&2
+  exit 127
+fi
+
+exec "$BLENDER_BIN" "$@"

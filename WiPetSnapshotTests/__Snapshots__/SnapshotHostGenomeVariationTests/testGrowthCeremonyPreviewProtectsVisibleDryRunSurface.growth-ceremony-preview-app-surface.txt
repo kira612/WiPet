@@ -1,0 +1,30 @@
+GrowthCeremonyPreviewAppSurface
+visibleLine:A familiar tail echo stays close while a soft body difference waits.
+continuityLine:Adult Luma can still feel like the same Luma.
+familyMemoryLine:Luma's family memories can stay with the grown shape.
+inheritedVisualMemoryLine:Luma's growth preview can remember firstAncestor's floating tail.
+growthInheritedVisualMemoryBridge=source:observationHomeGrowthCeremony,creature:Luma,ancestor:firstAncestor,wing:none,tail:floating,previewOnly:true,mutation:false,persistence:false,widget:false,discovery:false,playerFacing:false
+growthInheritedVisualMemoryBridgeReady:true
+growthInheritedVisualVisiblePromotionGate=bridgeReady:true,copyReview:false,appHostVisualQA:false,snapshotReview:false,layoutRoom:false,quietTone:true,promote:false,mutation:false,persistence:false,widget:false,discovery:false,playerFacing:false
+growthInheritedVisualVisiblePromotionGateReady:true
+growthInheritedVisualPromotionDeferral=gateReady:true,copyReview:true,appHostVisualQA:false,snapshotReview:false,layoutRoom:false,reason:appHostVisualQAPending,defers:true,mutation:false,persistence:false,widget:false,discovery:false,playerFacing:false
+growthInheritedVisualPromotionDeferralReady:true
+comparisonLine:Watch the tail glow before deciding together.
+growthBeforeAfterPortraitSurface=current:juvenile,next:adult,currentCue:familiar,nextCue:grown,allowsMutation:false,widgetHandoffAllowed:false,assetOutputs:none
+growthBeforeAfterStageCuePair=current:juvenile+familiar+soft,next:adult+grown+settled,previewOnly:true,mutation:false,assetOutputs:none
+growthBeforeAfterStageCuePairReady:true
+growthHornBudCeremonyPreview=current:dormantBud,next:dormantBud,visible:false,allowsMutation:false,widgetHandoffAllowed:false,discoveryAppend:false,assetOutputs:none
+growthHornBudCeremonyPreviewReady:true
+acknowledgement:growthObservationAcknowledgement=noted:false,previewOnly:true,normalUI:false,mutation:false,persistence:false,widget:false,discovery:false
+growthAcknowledgementGate=acknowledged:false,handoffReady:true,proofSatisfied:false,allowsCommit:false
+growthAcknowledgementSurface=acknowledged:false,allowsCommit:false,promptReady:true
+growthNoticedMemoryLine=acknowledged:false,display:false,previewOnly:true,write:false,mutation:false,widget:false,discovery:false
+growthNoticedMemoryLineReady:false
+growthNoticedMemoryCatalog=cue:crescentBelly,trait:bodyAccent,previewOnly:true,write:false,mutation:false,widget:false,discovery:false
+growthNoticedMemoryCatalogReady:true
+growthNoticedMemoryPriority=selected:softTailTipGlint,candidates:softTailTipGlint+crescentBelly,previewOnly:true,visibleCopyChanged:false,write:false,mutation:false,widget:false,discovery:false
+growthNoticedMemoryPriorityReady:true
+growthPersistenceBoundary=swiftData:true,appGroup:true,dryRun:true,write:false,mutatesCreature:false,discovery:false,widget:false,safe:true
+growthWidgetHandoffPreflight=schema:1,key:widget.currentObservation.json,widgetKind:WiPetWidget,payloadPrepared:true,previewOnly:true,write:false,reload:false,publish:false,persistenceBoundary:true,ready:true
+growthWidgetHandoffPreflightReady:true
+growthLineageAffectionCopyReady:true

@@ -1,0 +1,8 @@
+GrowthCeremonyCrescentHornSurface
+hornBudCue:spriteKitGrowthHornBudCue=gene:hornGrowth,bud:softCrescentBud,stage:elder,softness:rounded,visible:true,assetOutputs:none
+comparisonLine:Watch the soft crescent buds before deciding together.
+acknowledgement:growthObservationAcknowledgement=noted:true,previewOnly:true,normalUI:false,mutation:false,persistence:false,widget:false,discovery:false
+noticedMemoryLine:The soft crescent buds can wait here as a quiet growth memory.
+growthNoticedMemoryLine=acknowledged:true,display:true,previewOnly:true,write:false,mutation:false,widget:false,discovery:false
+growthNoticedMemoryPriority=selected:softCrescentBud,candidates:softCrescentBud+softTailTipGlint+crescentBelly,previewOnly:true,visibleCopyChanged:false,write:false,mutation:false,widget:false,discovery:false
+growthPersistenceBoundary=swiftData:true,appGroup:true,dryRun:true,write:false,mutatesCreature:false,discovery:false,widget:false,safe:true

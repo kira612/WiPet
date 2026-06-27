@@ -1,0 +1,460 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+PROJECT_PATH="${WIPET_XCODE_PROJECT:-$ROOT_DIR/WiPet.xcodeproj}"
+TIMEOUT_SECONDS="${WIPET_XCODEBUILD_TIMEOUT_SECONDS:-300}"
+DERIVED_DATA_PATH="${WIPET_DERIVED_DATA_PATH:-}"
+
+if [[ -n "${WIPET_TMPDIR:-}" ]]; then
+  mkdir -p "$WIPET_TMPDIR"
+  export TMPDIR="${WIPET_TMPDIR%/}/"
+fi
+
+usage() {
+  cat <<'USAGE'
+Usage: tools/xcode/wipet-xcodebuild <command> [extra xcodebuild args...]
+
+Commands:
+  app-build       Build the WiPet app for a generic iOS Simulator destination.
+  snapshot-build  Build WiPetSnapshotTests for testing on a generic iOS Simulator destination.
+  snapshot-test   Run built WiPetSnapshotTests with test-without-building on an available simulator.
+  widget-build    Build WiPetWidget for the iPhone Simulator SDK.
+  list            List project schemes and targets.
+  doctor          Print read-only Xcode/Git/Simulator health diagnostics.
+  project-summary Print read-only project targets and shared schemes without xcodebuild -list.
+
+Environment:
+  WIPET_XCODEBUILD_TIMEOUT_SECONDS  Timeout in seconds. Defaults to 300.
+  WIPET_DERIVED_DATA_PATH           Override DerivedData path.
+  WIPET_TMPDIR                      Override TMPDIR for default DerivedData/result bundles.
+  WIPET_CLONED_SOURCE_PACKAGES_DIR  Override Xcode SwiftPM cloned source packages path.
+  WIPET_XCODE_PROJECT               Override project path.
+  WIPET_SIMULATOR_ID                Override simulator id for snapshot-test.
+  WIPET_SNAPSHOT_BUILD_DESTINATION  Override destination for snapshot-build.
+  WIPET_XCTESTRUN_PATH              Override .xctestrun path for snapshot-test.
+  WIPET_RESULT_BUNDLE_PATH          Override result bundle path for snapshot-test.
+  WIPET_XCODEBUILD_DRY_RUN          Print the xcodebuild command instead of running it.
+USAGE
+}
+
+if [[ $# -lt 1 ]]; then
+  usage
+  exit 64
+fi
+
+command_name="$1"
+shift
+
+common_build_settings=(
+  CODE_SIGNING_ALLOWED=NO
+  ARCHS=arm64
+  ONLY_ACTIVE_ARCH=NO
+  COMPILER_INDEX_STORE_ENABLE=NO
+)
+
+append_cloned_source_packages_args() {
+  if [[ -n "${WIPET_CLONED_SOURCE_PACKAGES_DIR:-}" ]]; then
+    mkdir -p "$WIPET_CLONED_SOURCE_PACKAGES_DIR"
+    xcode_args+=(
+      -clonedSourcePackagesDirPath "$WIPET_CLONED_SOURCE_PACKAGES_DIR"
+    )
+  fi
+}
+
+print_timeout_diagnostics() {
+  echo "wipet-xcodebuild: timeout diagnostics" >&2
+  echo "wipet-xcodebuild: derivedDataPath: ${DERIVED_DATA_PATH:-unset}" >&2
+  if [[ -n "${DERIVED_DATA_PATH:-}" && -e "$DERIVED_DATA_PATH" ]]; then
+    du -sh "$DERIVED_DATA_PATH" 2>/dev/null | sed 's/^/wipet-xcodebuild: derivedDataSize: /' >&2 || true
+  fi
+  echo "wipet-xcodebuild: clonedSourcePackagesDir: ${WIPET_CLONED_SOURCE_PACKAGES_DIR:-unset}" >&2
+  if [[ -n "${WIPET_CLONED_SOURCE_PACKAGES_DIR:-}" && -e "$WIPET_CLONED_SOURCE_PACKAGES_DIR" ]]; then
+    du -sh "$WIPET_CLONED_SOURCE_PACKAGES_DIR" 2>/dev/null | sed 's/^/wipet-xcodebuild: clonedSourcePackagesSize: /' >&2 || true
+  fi
+  echo "wipet-xcodebuild: related process snapshot:" >&2
+  ps -axo pid,ppid,etime,stat,pcpu,command |
+    awk '
+      NR == 1 { print; next }
+      /xcodebuild|XCBBuildService|SourceKitService|swift-frontend|simctl/ && !/awk/ {
+        print
+        count += 1
+        if (count >= 20) {
+          exit
+        }
+      }
+    ' >&2 || true
+}
+
+resolve_snapshot_simulator_id() {
+  if [[ -n "${WIPET_SIMULATOR_ID:-}" ]]; then
+    echo "$WIPET_SIMULATOR_ID"
+    return
+  fi
+
+  xcrun simctl list devices available --json |
+    ruby -rjson -e '
+      devices = []
+      JSON.parse(STDIN.read).fetch("devices", {}).each do |runtime, list|
+        next unless runtime.include?("iOS")
+        list.each do |device|
+          next if device["isAvailable"] == false
+          devices << device
+        end
+      end
+
+      choice = devices.find { |device| device["state"] == "Booted" } ||
+        devices.find { |device| device.fetch("name", "").include?("iPhone") } ||
+        devices.first
+
+      abort("No available iOS Simulator found. Boot or create an iOS Simulator, or set WIPET_SIMULATOR_ID.") unless choice
+      puts choice.fetch("udid")
+    '
+}
+
+resolve_snapshot_xctestrun_path() {
+  if [[ -n "${WIPET_XCTESTRUN_PATH:-}" ]]; then
+    echo "$WIPET_XCTESTRUN_PATH"
+    return
+  fi
+
+  local products_dir="$DERIVED_DATA_PATH/Build/Products"
+  if [[ ! -d "$products_dir" ]]; then
+    echo "No Build/Products directory found at $products_dir. Run snapshot-build first or set WIPET_XCTESTRUN_PATH." >&2
+    exit 66
+  fi
+
+  local xctestrun_path
+  xctestrun_path="$(
+    find "$products_dir" -name 'WiPetSnapshotTests_*.xctestrun' -type f -exec stat -f '%m %N' {} \; |
+      sort -nr |
+      head -1 |
+      cut -d' ' -f2-
+  )"
+
+  if [[ -z "$xctestrun_path" || ! -f "$xctestrun_path" ]]; then
+    echo "No WiPetSnapshotTests .xctestrun found under $products_dir. Run snapshot-build first or set WIPET_XCTESTRUN_PATH." >&2
+    exit 66
+  fi
+
+  echo "$xctestrun_path"
+}
+
+xcode_args=(
+  -project "$PROJECT_PATH"
+  -configuration Debug
+  -quiet
+  -disableAutomaticPackageResolution
+)
+
+case "$command_name" in
+  app-build)
+    : "${DERIVED_DATA_PATH:=$TMPDIR/WiPetAppBuildDerived}"
+    append_cloned_source_packages_args
+    xcode_args+=(
+      -scheme WiPet
+      -destination "generic/platform=iOS Simulator"
+      -derivedDataPath "$DERIVED_DATA_PATH"
+      build
+      "${common_build_settings[@]}"
+    )
+    ;;
+  snapshot-build)
+    : "${DERIVED_DATA_PATH:=$TMPDIR/WiPetSnapshotBuildDerived}"
+    snapshot_build_destination="${WIPET_SNAPSHOT_BUILD_DESTINATION:-id=$(resolve_snapshot_simulator_id)}"
+    append_cloned_source_packages_args
+    xcode_args+=(
+      -scheme WiPetSnapshotTests
+      -destination "$snapshot_build_destination"
+      -derivedDataPath "$DERIVED_DATA_PATH"
+      build-for-testing
+      "${common_build_settings[@]}"
+    )
+    ;;
+  snapshot-test)
+    : "${DERIVED_DATA_PATH:=/tmp/WiPetSnapshotBuildDerived}"
+    simulator_id="$(resolve_snapshot_simulator_id)"
+    xctestrun_path="$(resolve_snapshot_xctestrun_path)"
+    : "${WIPET_RESULT_BUNDLE_PATH:=/tmp/WiPetSnapshotTest-$(date +%Y%m%d%H%M%S).xcresult}"
+
+    echo "WiPet snapshot-test simulator: $simulator_id" >&2
+    echo "WiPet snapshot-test xctestrun: $xctestrun_path" >&2
+    echo "WiPet snapshot-test result bundle: $WIPET_RESULT_BUNDLE_PATH" >&2
+
+    xcode_args=(
+      test-without-building
+      -quiet
+      -xctestrun "$xctestrun_path"
+      -destination "id=$simulator_id"
+      -resultBundlePath "$WIPET_RESULT_BUNDLE_PATH"
+      -derivedDataPath "$DERIVED_DATA_PATH"
+    )
+    ;;
+  widget-build)
+    : "${DERIVED_DATA_PATH:=$TMPDIR/WiPetWidgetBuildDerived}"
+    append_cloned_source_packages_args
+    xcode_args+=(
+      -scheme WiPetWidget
+      -sdk iphonesimulator
+      -derivedDataPath "$DERIVED_DATA_PATH"
+      build
+      "${common_build_settings[@]}"
+    )
+    ;;
+  list)
+    xcode_args=(
+      -list
+      -project "$PROJECT_PATH"
+    )
+    ;;
+  doctor)
+    echo "WiPet Xcode doctor"
+    echo "root: $ROOT_DIR"
+    echo "project: $PROJECT_PATH"
+    echo
+
+    echo "Selected developer directory:"
+    xcode-select -p || true
+    echo
+
+    echo "Xcode version:"
+    xcodebuild -version || true
+    echo
+
+    echo "Git index lock:"
+    if [[ -e "$ROOT_DIR/.git/index.lock" ]]; then
+      ls -l "$ROOT_DIR/.git/index.lock"
+    else
+      echo "none"
+    fi
+    echo
+
+    echo "WiPet artifact paths:"
+    echo "TMPDIR: ${TMPDIR:-}"
+    echo "WIPET_DERIVED_DATA_PATH: ${WIPET_DERIVED_DATA_PATH:-}"
+    echo "WIPET_CLONED_SOURCE_PACKAGES_DIR: ${WIPET_CLONED_SOURCE_PACKAGES_DIR:-}"
+    echo
+
+    echo "WiPet storage preflight:"
+    min_data_volume_free_mb="${WIPET_MIN_DATA_VOLUME_FREE_MB:-2048}"
+    if [[ ! "$min_data_volume_free_mb" =~ ^[0-9]+$ ]]; then
+      echo "Invalid WIPET_MIN_DATA_VOLUME_FREE_MB: $min_data_volume_free_mb"
+      min_data_volume_free_mb=2048
+    fi
+    data_volume_free_mb=""
+    if df -m /System/Volumes/Data 2>/dev/null; then
+      data_volume_free_mb="$(df -m /System/Volumes/Data 2>/dev/null | awk 'NR == 2 { print $4 }')"
+      :
+    else
+      echo "Data volume unavailable"
+    fi
+    external_volume_available=false
+    external_volume_free_mb=""
+    if [[ -d "/Volumes/WD_BLACK SN770 500GB Media" ]]; then
+      df -m "/Volumes/WD_BLACK SN770 500GB Media" 2>/dev/null || true
+      external_volume_available=true
+      external_volume_free_mb="$(df -m "/Volumes/WD_BLACK SN770 500GB Media" 2>/dev/null | awk 'NR == 2 { print $4 }')"
+    else
+      echo "External WiPet volume unavailable: /Volumes/WD_BLACK SN770 500GB Media"
+    fi
+    echo
+
+    echo "XCTestDevices storage:"
+    xctest_devices_path="$HOME/Library/Developer/XCTestDevices"
+    xctest_devices_externalized=false
+    echo "path: $xctest_devices_path"
+    if [[ -L "$xctest_devices_path" ]]; then
+      xctest_devices_target="$(readlink "$xctest_devices_path")"
+      echo "symlinkTarget: $xctest_devices_target"
+      if [[ "$xctest_devices_target" == /Volumes/* ]]; then
+        xctest_devices_externalized=true
+      fi
+    elif [[ -e "$xctest_devices_path" ]]; then
+      echo "symlinkTarget: none"
+    else
+      echo "missing"
+    fi
+    if [[ -e "$xctest_devices_path" ]]; then
+      ls -ld "$xctest_devices_path" || true
+      du -sh "$xctest_devices_path" 2>/dev/null | sed 's/^/size: /' || true
+    fi
+    echo
+
+    echo "WiPet storage resume gate:"
+    echo "dataFreeMB: ${data_volume_free_mb:-unknown}"
+    echo "minDataFreeMB: $min_data_volume_free_mb"
+    echo "externalVolumeAvailable: $external_volume_available"
+    echo "externalVolumeFreeMB: ${external_volume_free_mb:-unknown}"
+    echo "xctestDevicesExternalized: $xctest_devices_externalized"
+    storage_resume_ready=false
+    if [[ "$data_volume_free_mb" =~ ^[0-9]+$ ]] &&
+      (( data_volume_free_mb >= min_data_volume_free_mb )) &&
+      [[ "$external_volume_available" == "true" ]] &&
+      [[ "$xctest_devices_externalized" == "true" ]]; then
+      storage_resume_ready=true
+      echo "storageResumeReady: true"
+    else
+      echo "storageResumeReady: false"
+    fi
+    echo
+
+    xcode_source_control_processes="$(
+      ps -axo pid,ppid,etime,stat,command |
+        rg 'git -c .*core\.fsmonitor|git -c attr\.tree=' || true
+    )"
+    xcode_source_control_processes_quiet=false
+    if [[ -z "$xcode_source_control_processes" ]]; then
+      xcode_source_control_processes_quiet=true
+    fi
+
+    xcodebuild_processes="$(
+      ps -axo pid,ppid,etime,stat,pcpu,command |
+        awk '
+          (/\/xcodebuild([[:space:]]|$)/ || /[[:space:]]xcodebuild([[:space:]]|$)/) && / build| test|WiPet|\.xcodeproj/ && !/awk/ {
+            print
+            found = 1
+          }
+          END {
+            exit(found ? 0 : 1)
+          }
+        ' || true
+    )"
+    xcodebuild_processes_quiet=false
+    if [[ -z "$xcodebuild_processes" ]]; then
+      xcodebuild_processes_quiet=true
+    fi
+
+    echo "Visible Xcode source-control git processes:"
+    if [[ -n "$xcode_source_control_processes" ]]; then
+      echo "$xcode_source_control_processes"
+    else
+      echo "none"
+    fi
+    echo
+
+    echo "Visible xcodebuild processes:"
+    if [[ -n "$xcodebuild_processes" ]]; then
+      echo "$xcodebuild_processes"
+    else
+      echo "none"
+    fi
+    echo
+
+    echo "WiPet app-host visual QA resume gate:"
+    echo "storageResumeReady: $storage_resume_ready"
+    echo "sourceControlProcessesQuiet: $xcode_source_control_processes_quiet"
+    echo "xcodebuildProcessesQuiet: $xcodebuild_processes_quiet"
+    if [[ "$storage_resume_ready" == "true" ]] &&
+      [[ "$xcode_source_control_processes_quiet" == "true" ]] &&
+      [[ "$xcodebuild_processes_quiet" == "true" ]]; then
+      echo "appHostVisualQAResumeReady: true"
+    else
+      echo "appHostVisualQAResumeReady: false"
+    fi
+    echo
+
+    echo "Available CoreSimulator runtimes:"
+    xcrun simctl list runtimes | sed -n '1,20p' || true
+    exit 0
+    ;;
+  project-summary)
+    pbxproj_path="$PROJECT_PATH/project.pbxproj"
+    schemes_dir="$PROJECT_PATH/xcshareddata/xcschemes"
+
+    echo "WiPet project summary fallback"
+    echo "project: $PROJECT_PATH"
+    echo "note: read-only fallback; this does not replace build/test gates"
+    echo
+
+    echo "Project lint:"
+    plutil -lint "$pbxproj_path"
+    echo
+
+    echo "Shared scheme lint:"
+    if compgen -G "$schemes_dir/*.xcscheme" >/dev/null; then
+      while IFS= read -r scheme_path; do
+        xmllint --noout "$scheme_path"
+        echo "OK: ${scheme_path#$ROOT_DIR/}"
+      done < <(find "$schemes_dir" -maxdepth 1 -name '*.xcscheme' -type f | sort)
+    else
+      echo "none"
+    fi
+    echo
+
+    echo "Native targets:"
+    awk '
+      /isa = PBXNativeTarget;/ { in_target = 1; next }
+      in_target && /^[[:space:]]*name = / {
+        name = $0
+        sub(/^[[:space:]]*name = /, "", name)
+        sub(/;$/, "", name)
+        gsub(/"/, "", name)
+        print "- " name
+        in_target = 0
+      }
+    ' "$pbxproj_path"
+    echo
+
+    echo "Shared schemes:"
+    if compgen -G "$schemes_dir/*.xcscheme" >/dev/null; then
+      find "$schemes_dir" -maxdepth 1 -name '*.xcscheme' -type f -print |
+        sort |
+        while IFS= read -r scheme_path; do
+          scheme_name="$(basename "$scheme_path" .xcscheme)"
+          echo "- $scheme_name"
+        done
+    else
+      echo "none"
+    fi
+    exit 0
+    ;;
+  -h|--help|help)
+    usage
+    exit 0
+    ;;
+  *)
+    echo "Unknown command: $command_name" >&2
+    usage >&2
+    exit 64
+    ;;
+esac
+
+xcode_args+=("$@")
+
+echo "Running xcodebuild ${xcode_args[*]}" >&2
+
+if [[ "${WIPET_XCODEBUILD_DRY_RUN:-0}" == "1" ]]; then
+  printf 'Dry run:'
+  printf ' %q' xcodebuild "${xcode_args[@]}"
+  printf '\n'
+  exit 0
+fi
+
+xcodebuild "${xcode_args[@]}" &
+child_pid=$!
+
+(
+  sleep "$TIMEOUT_SECONDS"
+  if kill -0 "$child_pid" 2>/dev/null; then
+    echo "wipet-xcodebuild: timed out after ${TIMEOUT_SECONDS}s; terminating child xcodebuild pid ${child_pid}" >&2
+    print_timeout_diagnostics
+    kill -TERM "$child_pid" 2>/dev/null || true
+    sleep 3
+    kill -KILL "$child_pid" 2>/dev/null || true
+  fi
+) &
+watchdog_pid=$!
+
+set +e
+wait "$child_pid"
+status=$?
+set -e
+
+kill "$watchdog_pid" 2>/dev/null || true
+wait "$watchdog_pid" 2>/dev/null || true
+
+if [[ "$status" -eq 143 || "$status" -eq 137 ]]; then
+  exit 124
+fi
+
+exit "$status"

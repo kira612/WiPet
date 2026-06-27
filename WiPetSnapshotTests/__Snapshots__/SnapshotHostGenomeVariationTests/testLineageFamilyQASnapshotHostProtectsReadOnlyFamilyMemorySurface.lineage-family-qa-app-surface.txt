@@ -1,0 +1,31 @@
+LineageFamilyQAAppSurface
+snapshotHostEntry=surface:lineageFamilyQA,view:LineageFamilyQAView,launch:--wipet-snapshot-host-lineage-family,candidateReady:true,appHost:true,referenceImage:false,snapshotAssertion:false,technicalMetadata:false,appBehaviorChanged:false,ready:true
+lineageFamilyTreeTeaser=title:Family tree,childDraft:ready,navigation:false,persistence:false,breeding:false,optimization:false,playerFacing:false
+lineageFamilyBranchPreview=ancestor:Ori,members:Luma+Mira,draft:Draft memory,generations:3,nodes:4,edges:3,navigation:false,persistence:false,breeding:false,optimization:false,playerFacing:false
+lineageFamilyBranchPreviewReady:true
+lineageReadOnlyPreviewSurfaceTextReady:true
+lineageReadOnlyPreviewSurfaceText=lines:5,changed:body,readOnly:true,hiddenRandomDetails:false
+Family preview
+A quiet look at what this line may remember.
+This draft stays closest to Luma.
+Mira may lend a gentleVariation body cue.
+Family resemblance stays stronger than the surprise.
+lineageBranchCaptionTextReady:true
+lineageBranchCaptionText=ancestor:Ori,members:Luma+Mira,draft:Draft memory,lines:2,readOnly:true,hiddenRandomDetails:false
+Ori's line holds Luma and Mira close while Draft memory waits as a quiet memory.
+Family resemblance stays stronger than the surprise.
+Luma's family memories can stay with the grown shape.
+lineageFamilyMemoryContinuity=source:growthCeremony,line:Luma family memories can stay with the grown shape,readOnly:true,navigation:false,persistence:false,breeding:false,optimization:false,widget:false,playerFacing:false
+lineageFamilyMemoryContinuityReady:true
+lineageAncestorPortraitMemoryCard=ancestor:Ori,portrait:Ori portrait,changed:face,inheritedCue:fairy winglets,changedCue:soft deer-face echo,readOnly:true,seed:false,persistence:false,breeding:false,optimization:false,widget:false,playerFacing:false
+lineageAncestorPortraitMemoryCardReady:true
+lineageDraftMemoryEvidenceReview=changed:body,title:Evidence review,traitReady:true,ancestorReady:true,contextReady:true,persistence:false,discoveryWrite:false,createsChild:false,playerFacing:false
+lineageDraftMemoryAcknowledgementReview=changed:body,title:Acknowledgement review,reviewReady:true,waitingReady:true,commit:false,persistence:false,discoveryWrite:false,createsChild:false,playerFacing:false
+lineageDraftMemoryExplicitIntentGate=changed:body,title:Intent gate,intent:false,commit:false,persistence:false,discoveryWrite:false,createsChild:false,playerFacing:false
+lineageDraftMemoryPersistence=changed:body,ceremony:false,evidence:false,swiftData:false,appGroup:false,createsChild:false,futureWrite:false,playerFacing:false
+lineageDraftMemoryPersistenceDryRun=changed:body,safe:true,futureReady:false,intent:false,swiftData:true,appGroup:true,dryRun:true,write:false,createsChild:false,playerFacing:false
+lineageDraftMemoryConfirmationCeremony=changed:body,title:Confirmation ceremony,acknowledgement:true,intent:true,dryRun:true,commit:false,persistence:false,discoveryWrite:false,createsChild:false,playerFacing:false
+lineageFamilyGraphLayoutAdoption=generations:3,nodes:4,edges:3,deterministic:false,manualInsufficient:false,adopt:false,playerFacing:false
+lineageFamilyGraphLayoutLibraryReview=candidate:SwiftAlgorithmsCollections,purpose:branchTraversalAndOrdering,manualPreferred:true,adoptGate:false,dependencyAdded:false,packageChanged:false,appBehaviorChanged:false,playerFacing:false
+lineageFamilyGraphLayoutLibraryReviewReady:true
+snapshotTestingProposal=surfaces:lineageFamilyQA+genomeVariationQA,stable:2,manualQA:true,dependencyAdded:false,appBehaviorChanged:false,proposalReady:true

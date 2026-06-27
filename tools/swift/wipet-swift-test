@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+TIMEOUT_SECONDS="${WIPET_SWIFT_TEST_TIMEOUT_SECONDS:-300}"
+
+usage() {
+  cat <<'USAGE'
+Usage: tools/swift/wipet-swift-test [extra swift test args...]
+
+Environment:
+  WIPET_SWIFT_TEST_TIMEOUT_SECONDS  Timeout in seconds. Defaults to 300.
+  WIPET_SWIFTPM_SCRATCH_PATH        Override SwiftPM scratch/build path.
+  WIPET_SWIFT_TEST_DRY_RUN          Print the resolved command instead of running it.
+USAGE
+}
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" || "${1:-}" == "help" ]]; then
+  usage
+  exit 0
+fi
+
+swift_args=(test)
+
+if [[ -n "${WIPET_SWIFTPM_SCRATCH_PATH:-}" ]]; then
+  mkdir -p "$WIPET_SWIFTPM_SCRATCH_PATH"
+  swift_args+=(
+    --scratch-path "$WIPET_SWIFTPM_SCRATCH_PATH"
+  )
+fi
+
+swift_args+=("$@")
+
+echo "Running swift ${swift_args[*]}" >&2
+
+if [[ "${WIPET_SWIFT_TEST_DRY_RUN:-0}" == "1" ]]; then
+  printf 'Dry run:'
+  printf ' %q' swift "${swift_args[@]}"
+  printf '\n'
+  exit 0
+fi
+
+cd "$ROOT_DIR"
+swift "${swift_args[@]}" &
+child_pid=$!
+
+(
+  sleep "$TIMEOUT_SECONDS"
+  if kill -0 "$child_pid" 2>/dev/null; then
+    echo "wipet-swift-test: timed out after ${TIMEOUT_SECONDS}s; terminating child swift pid ${child_pid}" >&2
+    kill -TERM "$child_pid" 2>/dev/null || true
+    sleep 3
+    kill -KILL "$child_pid" 2>/dev/null || true
+  fi
+) &
+watchdog_pid=$!
+
+set +e
+wait "$child_pid"
+status=$?
+set -e
+
+kill "$watchdog_pid" 2>/dev/null || true
+wait "$watchdog_pid" 2>/dev/null || true
+
+if [[ -d "$ROOT_DIR/.build" ]]; then
+  build_size="$(du -sh "$ROOT_DIR/.build" 2>/dev/null | awk '{print $1}')"
+  echo "wipet-swift-test: workspace .build present (${build_size:-unknown}); scratch path: ${WIPET_SWIFTPM_SCRATCH_PATH:-default}" >&2
+else
+  echo "wipet-swift-test: workspace .build absent; scratch path: ${WIPET_SWIFTPM_SCRATCH_PATH:-default}" >&2
+fi
+
+if [[ "$status" -eq 143 || "$status" -eq 137 ]]; then
+  exit 124
+fi
+
+exit "$status"
